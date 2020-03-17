@@ -14,7 +14,6 @@ description: >-
 4. [IBM Blockchain Platform Extension for VSCode](https://marketplace.visualstudio.com/items?itemName=IBMBlockchain.ibm-blockchain-platform)
 5. Delete existing Kubernetes cluster \(deletion process takes around 30 minutes\)
 
->
 
 
 

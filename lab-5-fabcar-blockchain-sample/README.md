@@ -9,7 +9,7 @@ description: 'Cloning repo, setup VSCode, deploying Smart Contract'
 Clone this repository in a folder your choice:
 
 ```text
-git clone https://github.com/IBM/fabcar-blockchain-sample.git
+git clone https://github.com/IraAngeles-IBM/fabcar-blockchain-sample.git
 cd fabcar-blockchain-sample
 ```
 

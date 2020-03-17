@@ -4,9 +4,9 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Lab 6: Connect application to the network · GitBook</title>
+        <title>Lab 3: FabCar Blockchain Sample - IBM Blockchain Platform Creation · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="description" content="">
+        <meta name="description" content="Create IBM Blockchain Platform service, deploy in Kubernetes cluster, start IBM Blockchain Platform console">
         <meta name="generator" content="GitBook 3.2.3">
         
         
@@ -57,10 +57,10 @@
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="lab-7-run-the-application.html" />
+    <link rel="next" href="lab-4-fabcar-blockchain-sample-build-a-network/" />
     
     
-    <link rel="prev" href="lab-5-fabcar-blockchain-sample/lab-5b-deploy-fabcar-smart-contract-on-the-network.html" />
+    <link rel="prev" href="lab-1-fabcar-blockchain-sample.html" />
     
 
     </head>
@@ -154,7 +154,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6" data-path="lab-3-fabcar-blockchain-sample-ibm-blockchain-platform-creation.html">
+        <li class="chapter active" data-level="1.6" data-path="lab-3-fabcar-blockchain-sample-ibm-blockchain-platform-creation.html">
             
                 <a href="lab-3-fabcar-blockchain-sample-ibm-blockchain-platform-creation.html">
             
@@ -270,7 +270,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.9" data-path="lab-6-connect-application-to-the-network.html">
+        <li class="chapter " data-level="1.9" data-path="lab-6-connect-application-to-the-network.html">
             
                 <a href="lab-6-connect-application-to-the-network.html">
             
@@ -352,7 +352,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >Lab 6: Connect application to the network</a>
+        <a href="." >Lab 3: FabCar Blockchain Sample - IBM Blockchain Platform Creation</a>
     </h1>
 </div>
 
@@ -367,59 +367,35 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="lab-6-connect-application-to-the-network">Lab 6: Connect application to the network</h1>
+                                <h1 id="lab-3-fabcar-blockchain-sample---ibm-blockchain-platform-creation">Lab 3: FabCar Blockchain Sample - IBM Blockchain Platform Creation</h1>
+<h3 id="kubernetes-cluster">Kubernetes cluster</h3>
 <ul>
-<li><strong>Connect with sdk through connection profile</strong><ul>
-<li>Under the Instantiated Smart Contract, click on <code>Connect with SDK</code> from the overflow menu on the right side of the row.</li>
-<li>Choose from the dropdown for <strong>MSP for connection</strong>, <code>org1msp</code>.</li>
-<li>Choose from <strong>Certificate Authority</strong> dropdown, <code>Org1 CA</code>.</li>
-<li>Download the connection profile by scrolling down and clicking <strong>Download Connection Profile</strong>. This will download the connection json which we will use soon to establish connection.</li>
-<li>You can click <strong>Close</strong> once the download completes.</li>
+<li>Get kubernetes namespace</li>
 </ul>
-</li>
-</ul>
-<p><img src="assets/sc19.gif" alt="Connect with SDK"></p>
-<ul>
-<li><strong>Create an application admin</strong><ul>
-<li>Go to the <strong>Nodes</strong> tab on the left bar, and under <strong>Certificate Authorities</strong>, choose your organization CA, <strong>Org1 CA</strong>.</li>
-<li>Click on <strong>Register user</strong>.</li>
-<li>Give an <strong>Enroll ID</strong> and <strong>Enroll Secret</strong> to administer your application users, <code>app-admin</code> and <code>app-adminpw</code>.</li>
-<li>Choose <code>client</code> as <strong>Type</strong>.</li>
-<li>You can leave the <strong>Maximum enrollments</strong> blank.</li>
-<li>Under <strong>Attributes</strong>, click on <strong>Add attribute</strong>. Give attribute as <code>hf.Registrar.Roles</code> = <code>*</code>. This will allow this identity to act as registrar and issues identities for our app. Click <strong>Add-attribute</strong>.</li>
-<li>Click <strong>Register</strong>.</li>
-</ul>
-</li>
-</ul>
-<p><img src="assets/sc20.gif" alt="Application Admin"></p>
-<ul>
-<li><strong>Update application connection</strong><ul>
-<li>Copy the connection profile you downloaded into <a href="https://github.com/IBM/fabcar-blockchain-sample/blob/master/web-app/server" target="_blank">server folder</a></li>
-<li>Update the <a href="https://github.com/IBM/fabcar-blockchain-sample/blob/master/web-app/server/config.json" target="_blank">config.json</a> file with:<ul>
-<li>The connection json file name you downloaded.</li>
-<li>The <strong>enroll id</strong> and <strong>enroll secret</strong> for your app admin, which we earlier provided as <code>app-admin</code> and <code>app-adminpw</code>.</li>
-<li>The orgMSP ID, which we provided as <code>org1msp</code>.</li>
-<li>The caName, which can be found in your connection json file under &quot;organization&quot; -&gt; &quot;org1msp&quot; -&gt; certificateAuthorities&quot;. This would be like an IP address and a port.</li>
-<li>The username you would like to register.</li>
-<li>Update gateway discovery to <code>{ enabled: true, asLocalhost: false }</code> to connect to IBP.</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>the current default setup is to connect to a local fabric instance from VS Code</p>
-</blockquote>
-<pre><code class="lang-text">{
-    &quot;connection_file&quot;: &quot;mychannel_fabcar_profile.json&quot;,
-    &quot;appAdmin&quot;: &quot;app-admin&quot;,
-    &quot;appAdminSecret&quot;: &quot;app-adminpw&quot;,
-    &quot;orgMSPID&quot;: &quot;org1msp&quot;,
-    &quot;caName&quot;: &quot;184.173.1.18:31317&quot;,
-    &quot;userName&quot;: &quot;user1&quot;,
-    &quot;gatewayDiscovery&quot;: { &quot;enabled&quot;: true, &quot;asLocalhost&quot;: false }
-}
+<pre><code class="lang-text">kubectl get namespace
 </code></pre>
+<ul>
+<li>Get kubernetes pods</li>
+</ul>
+<pre><code class="lang-text">kubectl get pods -n &lt;IBP namespace&gt; -w
+</code></pre>
+<h3 id="create-ibm-blockchain-platform-service">Create IBM Blockchain Platform service</h3>
+<ul>
+<li>Create the <a href="https://console.bluemix.net/catalog/services/blockchain/" target="_blank">IBM Blockchain Platform</a> service on the IBM Cloud (Region - Dallas). You can find the service in the <code>Catalog</code>, and give a name.</li>
+</ul>
+<p><img src="assets/sc1.gif" alt=""></p>
+<ul>
+<li>After your kubernetes cluster is up and running, you can deploy your IBM Blockchain Platform on the cluster. The service walks through few steps and finds your cluster on the IBM Cloud to deploy the service on.</li>
+</ul>
+<p><img src="assets/sc2.gif" alt=""></p>
+<ul>
+<li>Once the Blockchain Platform is deployed on the Kubernetes cluster, you can launch the console to start operating on your blockchain network.</li>
+</ul>
+<p><img src="assets/sc3%20%281%29.gif" alt=""></p>
+<ul>
+<li>Start IBM Blockchain Platform Console</li>
+</ul>
+<p><img src="assets/sc4.gif" alt="IBM Blockchain Platform Console"></p>
 
                                 
                                 </section>
@@ -447,12 +423,12 @@
 
             
                 
-                <a href="lab-5-fabcar-blockchain-sample/lab-5b-deploy-fabcar-smart-contract-on-the-network.html" class="navigation navigation-prev " aria-label="Previous page: Lab 5b: Deploy FabCar Smart Contract on the network">
+                <a href="lab-1-fabcar-blockchain-sample.html" class="navigation navigation-prev " aria-label="Previous page: Lab 2: FabCar Blockchain Sample - Overview">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="lab-7-run-the-application.html" class="navigation navigation-next " aria-label="Next page: Lab 7: Run the application">
+                <a href="lab-4-fabcar-blockchain-sample-build-a-network/" class="navigation navigation-next " aria-label="Next page: Lab 4: FabCar Blockchain Sample - Build a Network">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -463,7 +439,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Lab 6: Connect application to the network","level":"1.9","depth":1,"next":{"title":"Lab 7: Run the application","level":"1.10","depth":1,"path":"lab-7-run-the-application.md","ref":"./lab-7-run-the-application.md","articles":[]},"previous":{"title":"Lab 5b: Deploy FabCar Smart Contract on the network","level":"1.8.2","depth":2,"path":"lab-5-fabcar-blockchain-sample/lab-5b-deploy-fabcar-smart-contract-on-the-network.md","ref":"./lab-5-fabcar-blockchain-sample/lab-5b-deploy-fabcar-smart-contract-on-the-network.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"lab-6-connect-application-to-the-network.md","mtime":"2020-03-17T02:57:19.250Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-17T06:45:56.082Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"description":"Create IBM Blockchain Platform service, deploy in Kubernetes cluster, start IBM Blockchain Platform console","title":"Lab 3: FabCar Blockchain Sample - IBM Blockchain Platform Creation","level":"1.6","depth":1,"next":{"title":"Lab 4: FabCar Blockchain Sample - Build a Network","level":"1.7","depth":1,"path":"lab-4-fabcar-blockchain-sample-build-a-network/README.md","ref":"./lab-4-fabcar-blockchain-sample-build-a-network/README.md","articles":[{"title":"Lab 4a: FabCar Blockchain Sample - Build a Network (1/3)","level":"1.7.1","depth":2,"path":"lab-4-fabcar-blockchain-sample-build-a-network/lab-4-fabcar-blockchain-sample-build-network.md","ref":"lab-4-fabcar-blockchain-sample-build-a-network/lab-4-fabcar-blockchain-sample-build-network.md","articles":[]},{"title":"Lab 4b: FabCar Blockchain Sample - Build a Network (2/3)","level":"1.7.2","depth":2,"path":"lab-4-fabcar-blockchain-sample-build-a-network/lab-4-fabcar-blockchain-sample-build-a-network-2-3.md","ref":"./lab-4-fabcar-blockchain-sample-build-a-network/lab-4-fabcar-blockchain-sample-build-a-network-2-3.md","articles":[]},{"title":"Lab 4c: FabCar Blockchain Sample - Build a Network (3/3)","level":"1.7.3","depth":2,"path":"lab-4-fabcar-blockchain-sample-build-a-network/lab-4c-fabcar-blockchain-sample-build-a-network-3-3.md","ref":"./lab-4-fabcar-blockchain-sample-build-a-network/lab-4c-fabcar-blockchain-sample-build-a-network-3-3.md","articles":[]}]},"previous":{"title":"Lab 2: FabCar Blockchain Sample - Overview","level":"1.5","depth":1,"path":"lab-1-fabcar-blockchain-sample.md","ref":"./lab-1-fabcar-blockchain-sample.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"lab-3-fabcar-blockchain-sample-ibm-blockchain-platform-creation.md","mtime":"2020-03-17T02:57:02.634Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-17T06:45:56.082Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
