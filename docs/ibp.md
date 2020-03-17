@@ -1,6 +1,3 @@
-# IBM Blockchain Platform V2 Workshop
-
-
 # Business blockchain concepts
 
 A _**business blockchain network**_ is a decentralized network that uses distributed ledger technology \(DLT\) for the efficient and secure transfer of business assets between member organizations in the network. Assets can be physical or digital, such as vehicles, diamonds, fresh produce, or insurance records. A shared, _**distributed ledger**_ records an immutable history of all asset transactions between participants in the network, and catalogs the current state \(world state\) of those assets. The business rules that govern transactions are agreed upon by members and encapsulated in **smart contracts**.
@@ -13,7 +10,4 @@ Need more background?
 
 * Check out our [**Introduction to distributed ledgers**](https://developer.ibm.com/tutorials/cl-blockchain-basics-intro-bluemix-trs/).
 * Watch the four-part [IBM Blockchain Platform Console Video Series](https://developer.ibm.com/series/ibm-blockchain-platform-console-video-series/), which shows you how to set up a business network on the IBM Blockchain Platform.
-
-
-Proceed to [IBM Blockchain Platform V2 Workshop](./SUMMARY.md) if you are using Github.  For GitBook use the left column to navigate between sections.
 

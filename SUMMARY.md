@@ -2,7 +2,6 @@
 
 # IBM Blockchain Platform V2 Workshop
 
-* [Business blockchain concepts](./ibp.md)
 * [Lab 0: FabCar Blockchain Sample - Prerequisites](./lab-0-fabcar-blockchain-sample-prerequisites.md)
 * [Lab 1: FabCar Blockchain Sample - Create IBM Cloud Kubernetes service](./lab-1-fabcar-blockchain-sample-create-ibm-cloud-services.md)
 * [Lab 2: FabCar Blockchain Sample - Overview](./lab-1-fabcar-blockchain-sample.md)
